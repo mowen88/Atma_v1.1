@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dqxnj6eh6b4jg"]
+
+[ext_resource type="Script" uid="uid://2myforcssl7n" path="res://world/entities/player/player.gd" id="1_okdxl"]
+[ext_resource type="Texture2D" uid="uid://cril4ps7sgcjh" path="res://world/entities/player/sprites/run.png" id="1_qrsrl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okdxl"]
+atlas = ExtResource("1_qrsrl")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3tac"]
+atlas = ExtResource("1_qrsrl")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m8a3"]
+atlas = ExtResource("1_qrsrl")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hg20"]
+atlas = ExtResource("1_qrsrl")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqccf"]
+atlas = ExtResource("1_qrsrl")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i151t"]
+atlas = ExtResource("1_qrsrl")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_538x4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okdxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3tac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m8a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hg20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqccf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i151t")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07sii"]
+radius = 3.0
+height = 12.0
+
+[node name="Player" type="CharacterBody2D" unique_id=2129963509]
+z_index = 5
+script = ExtResource("1_okdxl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613252880]
+sprite_frames = SubResource("SpriteFrames_538x4")
+animation = &"run"
+autoplay = "run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=352867235]
+shape = SubResource("CapsuleShape2D_07sii")

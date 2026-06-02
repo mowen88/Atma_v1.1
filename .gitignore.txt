@@ -1,0 +1,12 @@
+# Godot-specific overrides
+.godot/
+*.translation
+
+# Mono-specific overrides (if you use C# later)
+.mono/
+data_*/
+mono_crash.*
+
+# System / Tooling overrides
+.DS_Store
+Thumbs.db

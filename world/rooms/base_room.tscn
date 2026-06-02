@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dgbech0w4vg8y"]
+
+[node name="BaseRoom" type="Node2D" unique_id=1304746216]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=480202634]
+z_index = 2
+
+[node name="Limits" type="ReferenceRect" parent="." unique_id=1451227816]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Spawns" type="Node2D" parent="." unique_id=1812841320]
+
+[node name="Exits" type="Node2D" parent="." unique_id=1004912755]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://tvxvqw8h3w5t"]
+
+[ext_resource type="Script" uid="uid://d027tg4bd8121" path="res://states/gameplay_state/gameplay_state.gd" id="1_6dbvn"]
+[ext_resource type="PackedScene" uid="uid://78wkklni1sfd" path="res://UI/gameplay/touch_controller.tscn" id="2_tlrkc"]
+[ext_resource type="PackedScene" uid="uid://dqxnj6eh6b4jg" path="res://world/entities/player/player.tscn" id="3_75ceq"]
+
+[node name="GameplayState" type="Node2D" unique_id=1166817702]
+script = ExtResource("1_6dbvn")
+
+[node name="TouchController" parent="." unique_id=1554472224 instance=ExtResource("2_tlrkc")]
+
+[node name="CurrentRoom" type="Node2D" parent="." unique_id=736341642]
+
+[node name="RoomBounds" type="ReferenceRect" parent="." unique_id=1284883413]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=568773139]
+zoom = Vector2(10, 10)
+position_smoothing_enabled = true
+
+[node name="CameraTarget" type="Node2D" parent="." unique_id=788268541]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="CameraTarget" unique_id=1646259460]
+remote_path = NodePath("../../GameCamera")
+
+[node name="Player" parent="." unique_id=2129963509 instance=ExtResource("3_75ceq")]

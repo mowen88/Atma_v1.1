@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cxgq3xqu1qae4"]
+
+[ext_resource type="Script" uid="uid://ch5puub0vgia" path="res://states/title_state/title_state.gd" id="1_iidgw"]
+[ext_resource type="FontFile" uid="uid://ojhg4s2q0bw4" path="res://font/modern_dos/ModernDOS9x16.ttf" id="1_j6561"]
+[ext_resource type="Texture2D" uid="uid://bcecqrubud3io" path="res://states/title_state/button.png" id="2_6o8vq"]
+
+[node name="TitleState" type="Control" unique_id=1224411533]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_iidgw")
+
+[node name="TitleScreen" type="CanvasLayer" parent="." unique_id=461446395]
+
+[node name="ColorRect" type="ColorRect" parent="TitleScreen" unique_id=468827277]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -85.0
+offset_right = 18.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7882353, 0.49411765, 0.42352942, 1)
+
+[node name="Text" type="Label" parent="TitleScreen" unique_id=461422822]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_j6561")
+text = "Title Screen"
+
+[node name="Button" type="TextureButton" parent="TitleScreen" unique_id=1564251381]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -69.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_6o8vq")
+
+[connection signal="pressed" from="TitleScreen/Button" to="." method="_on_button_pressed"]

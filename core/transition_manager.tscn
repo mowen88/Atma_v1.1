@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://c65dk3tux0uw8"]
+
+[ext_resource type="Script" uid="uid://sb5tpadkq0wh" path="res://core/transition_manager.gd" id="1_6o8ov"]
+
+[sub_resource type="Animation" id="Animation_6o8ov"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d8cbi"]
+resource_name = "fade_to_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6jsws"]
+resource_name = "fade_to_normal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_26svo"]
+_data = {
+&"RESET": SubResource("Animation_6o8ov"),
+&"fade_to_black": SubResource("Animation_d8cbi"),
+&"fade_to_normal": SubResource("Animation_6jsws")
+}
+
+[node name="TransitionManager" type="CanvasLayer" unique_id=1521178536]
+script = ExtResource("1_6o8ov")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=893311563]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2061940334]
+root_node = NodePath("../ColorRect")
+libraries/ = SubResource("AnimationLibrary_26svo")
