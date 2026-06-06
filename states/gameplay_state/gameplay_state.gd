@@ -31,25 +31,30 @@ func transition_to_next_room(exit_id: int) -> void:
 
 ## Triggers the visual screen transition and schedules the clean room swap logic
 func _execute_room_swap(next_room_path: String, target_spawn_id: int) -> void:
+
 	# Call global transition instance
 	TransitionManager.fade_to_state(func() -> void:
-		player.set_physics_process(false)
+		#player.set_physics_process(false)
 		
 		# Clear out the previous room layout before loading the new one
 		for child in current_room_container.get_children():
 			child.queue_free()
-			
+		
 		_load_room(next_room_path, target_spawn_id)
 		
-		player.set_physics_process(true)
+		#player.set_physics_process(true)
 	)
 
 ## Instantiating and setting up any room
 func _load_room(room_path: String, spawn_id: int) -> void:
 	current_room_node = null
 	
+	# disable camera smoothing
+	game_camera.position_smoothing_enabled = false
+	
 	var next_room_scene = load(room_path)
 	if next_room_scene:
+		
 		current_room_node = next_room_scene.instantiate()
 		current_room_container.add_child(current_room_node)
 		
@@ -61,9 +66,14 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 			if spawn_id != 0:
 				player.global_position = Vector2(100, 250)
 				print("[WARN] Spawn ID ", spawn_id, " not found. Fallback used.")
-			
+
 		# Handle camera boundaries, targets, and matrix synchronization
 		_snap_camera_to_current_room()
+		
+		# wait for one process frame and reeanable the camera smoothing
+		await get_tree().process_frame
+		game_camera.position_smoothing_enabled = true
+
 	else:
 		print("[ERROR] Failed to load room at path: ", room_path)
 
@@ -72,15 +82,10 @@ func _snap_camera_to_current_room() -> void:
 	if not current_room_node:
 		return
 		
-	# 1. Establish the boundary walls first
+	# Establish the boundary walls
 	_update_camera_limits(current_room_node)
-	
-	# 2. Align your tracking anchor node directly to the player's location
+	# Align your tracking anchor node directly to the player's location
 	camera_target.global_position = player.global_position
-	
-	# 3. Force the camera node to match the target node instead of the spawn point
-	game_camera.global_position = camera_target.global_position
-	game_camera.reset_smoothing()
 	
 func _update_camera_limits(room_node: Node2D) -> void:
 	var limits = room_node.get_node_or_null("Limits") as ReferenceRect

@@ -18,6 +18,7 @@ offset_bottom = 40.0
 [node name="GameCamera" type="Camera2D" parent="." unique_id=568773139]
 zoom = Vector2(10, 10)
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 
 [node name="CameraTarget" type="Node2D" parent="." unique_id=788268541]
 
