@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://dqxnj6eh6b4jg"]
 
+[ext_resource type="Script" uid="uid://2myforcssl7n" path="res://world/entities/player/player.gd" id="1_okdxl"]
 [ext_resource type="Texture2D" uid="uid://cril4ps7sgcjh" path="res://world/entities/player/sprites/run.png" id="1_qrsrl"]
 [ext_resource type="Texture2D" uid="uid://ckcmdyufcnbfj" path="res://world/entities/player/sprites/idle.png" id="2_cqccf"]
 [ext_resource type="Script" uid="uid://bwme4m5yty8sg" path="res://core/character_fsm/fsm.gd" id="3_1hg20"]
-[ext_resource type="Script" uid="uid://2dx5tw1tdp2i" path="res://world/entities/player/states/player_idle.gd" id="4_cqccf"]
+[ext_resource type="Script" uid="uid://2dx5tw1tdp2i" path="res://world/entities/player/states/player_idle.gd" id="5_538x4"]
 [ext_resource type="Script" uid="uid://ivj6i6od3cwp" path="res://world/entities/player/states/player_run.gd" id="5_i151t"]
+[ext_resource type="Script" uid="uid://bq3xg7577ujn0" path="res://world/entities/player/states/player_jump.gd" id="7_i151t"]
+[ext_resource type="Script" uid="uid://m6ewx0bo78gt" path="res://world/entities/player/player_fall.gd" id="8_538x4"]
+[ext_resource type="Script" uid="uid://ig0ajkmqrkjf" path="res://world/entities/player/states/player_transitioning.gd" id="9_07sii"]
+[ext_resource type="Script" uid="uid://cxgounmhvi3j" path="res://world/entities/player/states/player_slide.gd" id="10_0cuh7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_538x4"]
 atlas = ExtResource("2_cqccf")
@@ -109,6 +114,7 @@ height = 12.0
 
 [node name="Player" type="CharacterBody2D" unique_id=2129963509]
 z_index = 5
+script = ExtResource("1_okdxl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613252880]
 sprite_frames = SubResource("SpriteFrames_538x4")
@@ -118,14 +124,31 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=352867235]
 shape = SubResource("CapsuleShape2D_07sii")
 
-[node name="FiniteStateMachine" type="Node" parent="." unique_id=1506740079]
+[node name="FiniteStateMachine" type="Node" parent="." unique_id=1506740079 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_1hg20")
+initial_state = NodePath("Fall")
 metadata/_custom_type_script = "uid://bwme4m5yty8sg"
 
 [node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=1424337063]
-script = ExtResource("4_cqccf")
+script = ExtResource("5_538x4")
 metadata/_custom_type_script = "uid://cvnqn1vyuk48k"
 
 [node name="Run" type="Node" parent="FiniteStateMachine" unique_id=179203634]
 script = ExtResource("5_i151t")
+metadata/_custom_type_script = "uid://cvnqn1vyuk48k"
+
+[node name="Jump" type="Node" parent="FiniteStateMachine" unique_id=1658921936]
+script = ExtResource("7_i151t")
+metadata/_custom_type_script = "uid://cvnqn1vyuk48k"
+
+[node name="Fall" type="Node" parent="FiniteStateMachine" unique_id=174900233]
+script = ExtResource("8_538x4")
+metadata/_custom_type_script = "uid://cvnqn1vyuk48k"
+
+[node name="Transitioning" type="Node" parent="FiniteStateMachine" unique_id=340749865]
+script = ExtResource("9_07sii")
+metadata/_custom_type_script = "uid://cvnqn1vyuk48k"
+
+[node name="Slide" type="Node" parent="FiniteStateMachine" unique_id=1472913530]
+script = ExtResource("10_0cuh7")
 metadata/_custom_type_script = "uid://cvnqn1vyuk48k"

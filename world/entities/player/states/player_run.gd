@@ -1,19 +1,28 @@
 extends State
 
-@export var move_speed: float = 200.0
+class_name Run
 
-func enter() -> void:
-	if actor.has_node("AnimationPlayer"):
-		actor.get_node("AnimationPlayer").play("run")
+func enter():
+	print("Entering run state")
+	
+	actor.get_node("AnimatedSprite2D").play("run")
 
-func physics_update(delta: float) -> void:
-	if not actor.is_on_floor():
-		actor.velocity += actor.get_gravity() * delta
+func physics_update(delta):
 
-	var input_dir = Input.get_axis("move_left", "move_right")
-	if input_dir == 0:
-		fsm.change_state("Idle")
-		return
-
-	actor.velocity.x = input_dir * move_speed
+	actor.x_input()
+	actor.velocity.x = actor.direction * 100
 	actor.move_and_slide()
+	
+	if actor.direction == 0:
+		fsm.change_state("idle")
+	
+	# Fall if not on floor
+	if not actor.is_on_floor():
+		fsm.change_state("fall")
+	
+	if Input.is_action_just_pressed("jump"):
+		fsm.change_state("jump")
+		return
+		
+	
+	

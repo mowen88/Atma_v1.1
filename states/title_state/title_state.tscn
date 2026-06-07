@@ -21,7 +21,7 @@ offset_right = 18.0
 offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.7882353, 0.49411765, 0.42352942, 1)
+color = Color(0.1335491, 0.13168618, 0.031245485, 1)
 
 [node name="Text" type="Label" parent="TitleScreen" unique_id=461422822]
 anchors_preset = 8

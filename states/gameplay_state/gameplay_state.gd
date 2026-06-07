@@ -60,9 +60,11 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 		
 		var spawn_node = current_room_node.get_node_or_null("Spawns/" + str(spawn_id))
 		if spawn_node:
+			# Set the player position to the spawn node
 			player.global_position = spawn_node.global_position
+
 		else:
-			# Only fallback if we can't find the spawn node (useful for custom boot positioning)
+			# Fallback if ther eis no spawn node (for future custom positioning?)
 			if spawn_id != 0:
 				player.global_position = Vector2(100, 250)
 				print("[WARN] Spawn ID ", spawn_id, " not found. Fallback used.")

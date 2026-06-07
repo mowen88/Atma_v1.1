@@ -1,27 +1,22 @@
-
 extends State
-
-class_name Idle
+class_name Jump
 
 func enter():
-	print("Entering idle state")
+	print("Entering jump state")
 	
 	actor.get_node("AnimatedSprite2D").play("idle")
-
+	
+	actor.jump_counter += 1 # Increments for the double jump
+	actor.velocity.y = actor.JUMP_VELOCITY
+	
 func physics_update(delta):
-
+	# Add gravity
+	actor.velocity.y += actor.gravity * delta
+	
 	# Handle horizontal movement
 	actor.x_input()
 	actor.velocity.x = actor.direction * 100
 	actor.move_and_slide()
 	
-	# Fall if not on floor
-	if not actor.is_on_floor():
+	if actor.velocity.y >= 0:
 		fsm.change_state("fall")
-	
-	if actor.direction != 0:
-		fsm.change_state("run")
-		
-	elif Input.is_action_just_pressed("jump"):
-		fsm.change_state("jump")
-		return

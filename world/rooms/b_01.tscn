@@ -29,12 +29,12 @@ position = Vector2(248, 176)
 script = ExtResource("3_l64kb")
 
 [node name="1" type="CollisionShape2D" parent="Exits/1" index="0" unique_id=228070534]
-position = Vector2(268, 56)
+position = Vector2(276, 56)
 shape = SubResource("RectangleShape2D_fo4c8")
 
 [node name="2" type="Area2D" parent="Exits" parent_id_path=PackedInt32Array(1004912755) index="1" unique_id=1140638252]
 script = ExtResource("3_l64kb")
 
 [node name="2" type="CollisionShape2D" parent="Exits/2" index="0" unique_id=1253338972]
-position = Vector2(268, 168)
+position = Vector2(276, 168)
 shape = SubResource("RectangleShape2D_fo4c8")
