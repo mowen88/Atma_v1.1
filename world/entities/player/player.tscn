@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cril4ps7sgcjh" path="res://world/entities/player/sprites/run.png" id="1_qrsrl"]
 [ext_resource type="Texture2D" uid="uid://ckcmdyufcnbfj" path="res://world/entities/player/sprites/idle.png" id="2_cqccf"]
 [ext_resource type="Script" uid="uid://bwme4m5yty8sg" path="res://core/character_fsm/fsm.gd" id="3_1hg20"]
+[ext_resource type="Texture2D" uid="uid://c71lu3a4uabna" path="res://world/entities/player/sprites/slide.png" id="4_xbfsf"]
 [ext_resource type="Script" uid="uid://2dx5tw1tdp2i" path="res://world/entities/player/states/player_idle.gd" id="5_538x4"]
 [ext_resource type="Script" uid="uid://ivj6i6od3cwp" path="res://world/entities/player/states/player_run.gd" id="5_i151t"]
 [ext_resource type="Script" uid="uid://bq3xg7577ujn0" path="res://world/entities/player/states/player_jump.gd" id="7_i151t"]
@@ -106,6 +107,14 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xbfsf")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07sii"]
@@ -118,7 +127,7 @@ script = ExtResource("1_okdxl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1613252880]
 sprite_frames = SubResource("SpriteFrames_538x4")
-animation = &"idle"
+animation = &"slide"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=352867235]

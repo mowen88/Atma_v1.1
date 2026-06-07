@@ -5,7 +5,8 @@ const SLIDE_SPEED = 120
 
 func enter():
 	print("Entering slide state")
-	actor.get_node("AnimatedSprite2D").play("idle")
+	
+	actor.get_node("AnimatedSprite2D").play("slide")
 
 func physics_update(delta):
 	# 1. Force the steady down-and-left 45-degree vector

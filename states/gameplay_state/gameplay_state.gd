@@ -13,6 +13,11 @@ func _ready() -> void:
 	# Bootstraps the first room immediately
 	_load_room("res://world/rooms/a_01.tscn", 0)
 
+func inject_room_dependencies_to_player(room_node: Node2D) -> void:
+	var active_tilemap = room_node.get_node_or_null("TileMapLayer") as TileMapLayer
+	player.current_tilemap = active_tilemap
+	print("Handed fresh tilemap to player!)") 
+
 func _process(_delta: float) -> void:
 	if not is_in_cutscene and player:
 		camera_target.global_position = player.global_position
@@ -68,7 +73,10 @@ func _load_room(room_path: String, spawn_id: int) -> void:
 			if spawn_id != 0:
 				player.global_position = Vector2(100, 250)
 				print("[WARN] Spawn ID ", spawn_id, " not found. Fallback used.")
-
+		
+		# Populate the room references to the player
+		inject_room_dependencies_to_player(current_room_node)
+		print(player.current_tilemap)
 		# Handle camera boundaries, targets, and matrix synchronization
 		_snap_camera_to_current_room()
 		
